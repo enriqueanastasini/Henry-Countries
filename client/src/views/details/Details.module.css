@@ -1,0 +1,123 @@
+.contenedorGeneral{
+    
+    height: 100%;
+
+}
+
+.contenedorDetailActivities{
+    display: flex;
+    flex-direction: row;
+    height: 90%;
+    justify-content: center;
+}
+
+.contenedorDetail{
+    margin-top: 20px;
+    padding-left: 20px;
+    background-color: rgb(255, 255, 255);
+    max-width: 400px;
+    width: 30%;
+    border-radius: 10px 0px 0px 10px;
+    max-height: 90%;
+    padding-right: 20px;
+    color: #143c6c;
+    display: flex;
+    align-items: stretch;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 10px 20px, #bdcdd7 0px 2px 10px, #bdcdd7 0px 0px 4px;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.contenedorHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px
+}
+.contenedorCountryData{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.label{
+    width: 30%;
+}
+
+
+.contenedorActivities{
+    
+    margin-top: 20px;
+    padding-left: 20px;
+    max-width: 400px;
+    width: 30%;
+    border-radius: 0px 10px 10px 0px;
+    max-height: 90%;
+    padding-right: 20px;
+    color: #143c6c;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 10px 20px, #bdcdd7 0px 2px 10px, #bdcdd7 0px 0px 4px;
+    flex-direction: column;
+    background-color: #06356e;
+    background-image: linear-gradient(to right,  #517fa4 0%, #143c6c 100%);}
+
+.contenedorActivity{
+    margin-bottom: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    color: #143c6c;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.377) 0px 10px 20px, #00000052 0px 2px 10px, #0000007a 0px 0px 4px;
+    align-items: center;
+    background-color: white;
+}
+
+.labelNameAct{
+    width: 40%;
+    font-weight: 600;
+    padding-left: 15px;
+}
+
+.labelSeasonAct{
+    width: 30%;
+}
+
+.numbers{
+    width: 15%;
+}
+
+.crossHome  {
+    position: absolute;
+    z-index: 100;
+    top: 14%;
+    right: 19.5%;
+    font-weight: 900;
+    text-decoration: none;
+    color: white;
+}
+
+.contenedorTitles{
+    width: 100%;
+    display: flex;
+    color: white;
+    margin-block-end: 12px;
+}
+.titleName{
+width: 40%;
+padding-left: 10px;
+}
+.titleTemporada{
+    width: 30%
+}
+.titleDificultad{
+    width: 15%
+}
+.titleDuración{
+    width: 15%
+}

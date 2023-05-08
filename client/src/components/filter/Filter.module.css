@@ -1,0 +1,29 @@
+.contenedorGeneral{
+    margin-block-start: 5px;
+    margin-block-end: 5px;
+  }
+  .contenedorTitulo{
+    background-color: #143c6c;
+    padding: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    justify-content: left;
+    display: flex;
+    padding-left: 10px;
+  }
+  .textoTitulo{
+    color: white;
+    font-size: 13px;
+    font-family: sans-serif;
+  }
+  .lista{
+    list-style: none;
+      margin: 5px;
+      margin-block-start: 5px;
+      padding: 0;
+  }
+  .listaLabel {
+    margin-left: 5px;
+    font-size: 13px;
+    font-family: 'Open Sans';
+  }

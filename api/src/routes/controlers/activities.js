@@ -1,4 +1,4 @@
-const { Activity } = require("../../db")
+const { Activity, Country } = require("../../db")
 const { ValidationError } = require("sequelize");
 const { getCountryIdVerification } = require("./utils/verifications")
 
@@ -31,7 +31,7 @@ Aprendizaje:
   al recorrido
 */
 const getActivitiesControler = async () => {
-    const activities = await Activity.findAll()
+    const activities = await Activity.findAll({include: [{model: Country, attributes: ['id'], through: { attributes: [] }} ]})
     return activities
 }
 

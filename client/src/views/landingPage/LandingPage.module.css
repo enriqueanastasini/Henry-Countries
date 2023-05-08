@@ -1,0 +1,84 @@
+.landing{
+    height: 100%;
+    /* background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%); */
+    background:rgb(0 0 0 / 0%) url(https://www.cooperatingvolunteers.com/wp-content/uploads/2017/03/bariloche.jpg);
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+.viajaapContainerPrincipal{
+    padding-top: 40px;
+}
+.viajaapContainer {
+    width: 120px;
+    height: 30px;
+    padding: 2px;
+    border-radius: 0px 20px 20px 0px;
+    background-color: rgba(255, 255, 255 , 80%);
+    display: flex;
+    align-items: center;
+}
+
+.viajaapText {
+    color: #143c6c;
+    font-size: 20px;
+    margin: 0 0 0 5px;
+    height: 24px;
+    font-family: 'Roboto';
+    font-weight: 800;
+}
+
+.palaneImgContainer { 
+    width: 20px;
+    height: 20px;
+    border: rgb(0 0 0 / 0%) 1px solid;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #143c6c;
+}
+
+.palaneImg {
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
+    object-fit: contain;
+    height: 80%;
+    width: 80%;
+}
+
+.contenedorPrincipal{
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    color: #143c6c;
+    margin: auto;
+    margin-top: 100px;
+    width: 450px;
+    background-color: #bdcdd794;
+    border-radius: 30px;
+    align-items: center;
+    justify-content: center;
+}
+.vacaciones{
+    font-size: 4rem;
+    font-family: 'Dancing Script', cursive;
+    font-weight: 900;
+    margin: 0px 0px 10px 0px;
+}
+.disfruta{
+    font-size: 1.5rem;
+    margin: 0px;
+}
+
+.loginButton{
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 380px;
+    color: #143c6c;
+    height: 38px;
+    border-radius: 20px;
+    border: 2px groove #143c6c;
+    font-weight: 800;
+}
+

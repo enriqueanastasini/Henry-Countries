@@ -22,7 +22,7 @@ const getAllCountriesDataControler = async () => {
         id: cca3,
         name: name.common,
         flag: flags,
-        continent: continents,
+        continent: continents[0],
         capital_city: capital,
         subregion: subregion,
         area: area,
@@ -55,15 +55,18 @@ const getCountryByPkControler = async (id) => {
 }
 
 const getCountryByNameControler = async (name) => {
-    const country = await Country.findOne({
+    const country = await Country.findAll({
         where: { 
             name: {
                 [Op.iLike]: `%${name}%`
               }}
         })
-        if(!country) throw Error(`The country ${name} was not found`) // Error "El pais xxx no se encontró"
-        else return country.dataValues
+        const countries = country.map(country => country.dataValues )
+        if(!country.length) throw Error(`The country ${name} was not found`) // Error "El pais xxx no se encontró"
+        else return countries
 }
+
+
 
 module.exports = {
     getCountryByPkControler,
@@ -71,5 +74,5 @@ module.exports = {
     getCountryByNameControler,
     getAllCountriesDataControler,
     saveCountriesDataControler,
-    countCountriesControlers
+    countCountriesControlers,
 }

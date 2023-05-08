@@ -20,7 +20,7 @@ const getActivitiesHandler = async (req,res)=>{
         res.status(200).json(activities)
     }
     catch(error){
-        res.status(400).send({error: error.message})
+        res.status(400).json({error: error.message})
     }
 }
 

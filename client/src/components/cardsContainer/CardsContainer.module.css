@@ -1,0 +1,46 @@
+.contenedorGeneral{
+    margin-left: 5px;
+    font-size: 13px;
+    font-family: 'Open Sans';
+}
+
+.contenedor2Cards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    background-color: rgba(255, 255, 255, 0.89);
+}
+
+.contenedorTitulos{
+    display: flex;
+    font-weight: 600;
+    font-size: 18px;
+    margin-block-end: 12px;
+    
+}
+.nameContainer{
+    padding-left: 30px;
+    width: 9%;
+}
+.name{
+    display: flex;
+    align-items: center;
+}
+
+.continente{
+    width: 23%;
+    margin-left: 29%;
+}
+.poblacion{
+    display: flex;
+    align-items: center;
+}
+
+.flechitaFiltro{
+    background-size: contain;
+    margin-left: 5px;
+    width: 12px;
+    height: 12px;
+    background-image: url(https://cdn-icons-png.flaticon.com/512/626/626013.png);
+}
