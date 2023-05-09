@@ -2,8 +2,8 @@
 //Contener a las cards que se deben ver en pantalla
 import CardsElement from "../cardsElement/CardElement"
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react"
-import { setFilteredCountries } from "../../redux/actions";
+import { useEffect, useState,  } from "react"
+import { setFilteredCountries, setPagina, setPaginado } from "../../redux/actions";
 import style from "./CardsContainer.module.css"
 import { ordenAlfabeticoPaises, ordenHabitantesPaises } from "../../redux/actions";
 import { ORDEN_ALFABETICO_PAISES, ORDEN_HABITANTES_PAISES } from "../../redux/action-types";
@@ -15,6 +15,10 @@ export default function CardsContainer() {
     const countries = useSelector((state => state.countries)) 
     const actividades = useSelector((state => state.activities)) 
     let countriesReserve = useSelector((state => state.countriesReserve)) 
+    const paginado = useSelector((state => state.paginado)) 
+    const pagina = useSelector((state => state.pagina)) 
+    const chargeCountries = useSelector((state => state.chargeCountries)) 
+    const [actualPage, setActualPage] = useState([])
     
     //Filtrado
     const activeFilters = useSelector(state => state.activeFilters)
@@ -26,8 +30,6 @@ export default function CardsContainer() {
         name
     } = activeFilters
     useEffect(()=>{
-        console.log(countriesReserve, "holi")
-        console.log(activeFilters)
         if(continents.length || activities.length || order.by || name){
             if(continents.length) {
                 countriesReserve = countriesReserve.filter(country => continents.includes(country.continent))
@@ -41,7 +43,6 @@ export default function CardsContainer() {
                 }
                     countriesReserve = countriesReserve.filter(country => countriesID.includes(country.id))
             }
-            console.log(countriesReserve, "chau")
             if(order.by){
                 switch(order.by) {
                     case "alfabetico":
@@ -64,24 +65,29 @@ export default function CardsContainer() {
                 countriesReserve = countriesReserve.filter(country => country.name.toUpperCase().includes(name.toUpperCase()))
             }
             dispatch(setFilteredCountries(countriesReserve))
+            dispatch(setPaginado(countriesReserve))
         } else if(!name.length) {
             dispatch(setFilteredCountries(countriesReserve))
+            dispatch(setPaginado(countriesReserve))
         }
-    }, [activeFilters])
+    }, [activeFilters,chargeCountries])
     
     //Paginado
-    const [currentPage, setCurrentPage]= useState(0)
-    const filterCountries = countries.slice(currentPage, currentPage + 10)
+    useEffect(()=> {
+        setActualPage(()=>{
+            return paginado[pagina]})
+    },[paginado,pagina])
+     
     const nextPage = () => {
-        setCurrentPage(currentPage + 10)
+        if(pagina < paginado.length-1)
+        dispatch(setPagina(pagina + 1))
     }
     const prevPage = () => {
-        if (currentPage > 0)
-        setCurrentPage(currentPage - 10)
+        if (pagina > 0){
+        dispatch(setPagina(pagina - 1))}
     }
 
     const handleSelect = (event) => {
-        console.log(event.target.value)
       switch(event.target.id) {
         case ORDEN_ALFABETICO_PAISES: //Este filtro se va cuando cambias de pestaña eso pasa porque toma un change del input y vuelve a hacer una request al servidor
             dispatch(ordenAlfabeticoPaises())
@@ -103,7 +109,7 @@ export default function CardsContainer() {
                 <div ><label className={style.poblacion} id={ORDEN_HABITANTES_PAISES} onClick={handleSelect} > Población <div className={style.flechitaFiltro}></div></label></div>
             </div>
             <div className={style.contenedor2Cards}>
-                {filterCountries?.map(country => <CardsElement country={{...country}}/>)}
+                {actualPage?.map(country => <CardsElement country={{...country}}/>)}
             </div>    
             <div>
             <input type="submit" onClick={prevPage} value="Página Anterior"/>

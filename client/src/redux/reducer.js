@@ -1,4 +1,4 @@
-import { CONSULTA_PAIS_ID, FILTER_BY_ACTIVITIE , CONSULTA_ACTIVITIES, CONSULTA_PAISES, LIMPIAR_PAIS, CONSULTA_PAIS_NAME, ORDEN_ALFABETICO_PAISES, ORDEN_HABITANTES_PAISES, FILTER_BY_CONTINENT, SET_FILTERED_COUNTRIES, CONSULTA_CONTINENTS } from "./action-types"
+import { CONSULTA_PAIS_ID, FILTER_BY_ACTIVITIE , CONSULTA_ACTIVITIES, CONSULTA_PAISES, LIMPIAR_PAIS, CONSULTA_PAIS_NAME, ORDEN_ALFABETICO_PAISES, ORDEN_HABITANTES_PAISES, FILTER_BY_CONTINENT, SET_FILTERED_COUNTRIES, CONSULTA_CONTINENTS, CONSULTA_PAGINADO, SET_PAGINA } from "./action-types"
 const initialState = { 
     countries: [], // Usado en CardsContainer
     country: {}, // Usado en Detail
@@ -14,7 +14,9 @@ const initialState = {
             sentido: true, //true ascendente false descendente
         },
         name: ""
-    }
+    },
+    paginado: [],
+    pagina: 0
 }
 
 export default function reducer(state = initialState, action) {
@@ -23,10 +25,21 @@ export default function reducer(state = initialState, action) {
         return {...state, countries: [...action.payload], chargeCountries: false, countriesReserve: [...action.payload]}
         case SET_FILTERED_COUNTRIES: 
         return {...state, countries: [...action.payload]}
+        case CONSULTA_PAGINADO: 
+        const paginado = []
+        for (let i = 0; i < action.payload.length; i += 10) {
+            const group = action.payload.slice(i, i + 10);
+            paginado.push(group);
+          }
+          console.log(paginado)
+        return {...state, paginado: [...paginado]}
         case CONSULTA_ACTIVITIES: 
         return {...state, activities: [...action.payload]}
-        case CONSULTA_CONTINENTS: 
+        case SET_PAGINA: 
         console.log(action.payload)
+        return {...state, pagina: action.payload}
+        case CONSULTA_CONTINENTS: 
+        
         return {...state, continents: [...action.payload]}
         case CONSULTA_PAIS_ID:
         return {...state, country: {...action.payload}}

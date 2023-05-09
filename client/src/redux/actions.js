@@ -1,4 +1,4 @@
-import { CONSULTA_PAISES, LIMPIAR_PAIS, CONSULTA_PAIS_NAME, CONSULTA_PAIS_ID, ORDEN_ALFABETICO_PAISES, FILTER_BY_ACTIVITIE, ORDEN_HABITANTES_PAISES, FILTER_BY_CONTINENT, CONSULTA_ACTIVITIES, SET_FILTERED_COUNTRIES, CONSULTA_CONTINENTS } from "./action-types";
+import { CONSULTA_PAISES, LIMPIAR_PAIS, CONSULTA_PAIS_NAME, CONSULTA_PAIS_ID, ORDEN_ALFABETICO_PAISES, FILTER_BY_ACTIVITIE, ORDEN_HABITANTES_PAISES, FILTER_BY_CONTINENT, CONSULTA_ACTIVITIES, SET_FILTERED_COUNTRIES, CONSULTA_CONTINENTS, CONSULTA_PAGINADO, SET_PAGINA } from "./action-types";
 import axios from "axios";
 
 
@@ -25,6 +25,13 @@ export const consultaContinents = () => {
 export const setFilteredCountries = (countries) => {
   return {type: SET_FILTERED_COUNTRIES, payload: countries}
 }
+export const setPaginado = (countries) => {
+  return {type: CONSULTA_PAGINADO, payload: countries}
+}
+export const setPagina = (pagina) => {
+  console.log(pagina)
+  return {type: SET_PAGINA, payload: pagina}
+}
 
 export const limpiarPais = () => {
   return {type: LIMPIAR_PAIS}
@@ -49,6 +56,6 @@ export const filterByActivities = (activitie) => {
 export const consultaActivties = () => { //hacerlo despues del send de form
   return function(dispatch) {
     axios(`http://localhost:3001/activities`)
-           .then(res => dispatch({type: CONSULTA_ACTIVITIES, payload: res.data}))
+           .then(res => dispatch({type: CONSULTA_ACTIVITIES, payload: res.data.sort((c1, c2) => c1.name.localeCompare(c2.name))}))
    }
 }

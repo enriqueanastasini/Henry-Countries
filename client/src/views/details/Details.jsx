@@ -12,6 +12,21 @@ export default function Details() {
     const { id } = useParams()
     const country= useSelector(state=> state.country)
     const dispatch = useDispatch()
+
+    const traduccionTemporadas = (temporada)=>{
+        switch(temporada){
+            case "winter":
+                return "Invierno"
+            case "summer": 
+                return "Verano"
+            case "autumn": 
+                return "Otoño"
+            case "spring": 
+                return "Primavera"
+            default:
+                return 
+        }
+    }
     
     useEffect(()=>{
         dispatch(consultaPaisId(id))
@@ -52,7 +67,7 @@ export default function Details() {
                     {country.activities?.map(activity=> (
                         <div className={style.contenedorActivity}>
                         <label className={style.labelNameAct}>{activity.name}</label>
-                        <label className={style.labelSeasonAct}>{activity.season}</label>
+                        <label className={(style.labelSeasonAct)}>{traduccionTemporadas(activity.season)}</label>
                         <label className={style.numbers}>{activity.difficulty}</label>
                         <label className={style.numbers}>{activity?.duration}</label>
                     </div>

@@ -44,7 +44,15 @@ export default function Form() {
 
      // Va guardando la información que está cargando el usuario
     const handleInputChange = (event)=>{ 
-        if(event.target.name === "difficulty"){
+        if(event.target.name === "name"){
+          let activitie = event.target.value
+          if(event.target.value.length){
+          activitie = activitie.trim().split("")
+          activitie[0] = activitie[0].toUpperCase()
+          activitie = activitie.join("")}
+          setInputs({...inputs, [event.target.name]: activitie})
+          setErrors({...validations({...inputs, [event.target.name]: activitie})})
+        } else if (event.target.name === "difficulty"){
           setInputs({...inputs, [event.target.name]: parseInt(event.target.value)})
           setErrors({...validations({...inputs, [event.target.name]: parseInt(event.target.value)})})
         } else {
@@ -116,7 +124,7 @@ export default function Form() {
     useEffect(()=> {if(countryName !== "") {
           consultaPaises()}
     console.log(inputs)}
-    , [countryName])
+    , [countryName, inputs])
 
 
     return(
