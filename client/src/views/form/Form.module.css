@@ -85,7 +85,6 @@
 
 .contenedorDificultadDuracion{
     display: flex;
-    margin-top: 20px;
 }
 
 .inputDuracion{
@@ -148,7 +147,6 @@
 }
 
 .container{
-    margin-top: 20px;
     width: 100%;
 }
 
@@ -160,4 +158,13 @@
     font-weight: bold;
     cursor: pointer;
     box-shadow: rgba(0, 0, 0, 0.04) 0px 10px 20px, #bdcdd7 0px 2px 10px, #bdcdd7 0px 0px 4px;
+}
+.errorContainer{
+    height: 20px;
+}
+
+.error{
+    margin: 0px;
+    color: red;
+    font-size: 11px;
 }

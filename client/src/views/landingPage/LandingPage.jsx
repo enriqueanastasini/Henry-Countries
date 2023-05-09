@@ -7,8 +7,7 @@ export default function LandingPage() {
         <div className={styles.landing}>
             <div className={styles.viajaapContainerPrincipal}>
             <div className={styles.viajaapContainer}>
-                <div className={styles.palaneImgContainer}><img className={styles.palaneImg} src="https://cdn.icon-icons.com/icons2/38/PNG/512/takeoffavion_avion_4532.png" alt="" /></div> 
-                {/* Conseguir un icono de avion blanco */}
+                <div className={styles.palaneImgContainer}><img className={styles.palaneImg} src="https://cdn.icon-icons.com/icons2/38/PNG/512/takeoffavion_avion_4532.png" alt="" /></div> {/* Conseguir un icono de avion blanco */}
                 <h1 className={styles.viajaapText}>VIAJAPP</h1>
                 </div>
                 </div>
@@ -17,7 +16,7 @@ export default function LandingPage() {
                     <h2 className={styles.disfruta}>DISFRUTA TUS</h2>
                     </div>
                 <div >
-                    <h1 className={styles.vacaciones}>VACACIONES</h1>
+                    <h1 className={styles.vacaciones}>VACACIONES</h1> {/*Cambiar la tipografía*/}
                 </div>
                 <div>
                 <Link to="/home">

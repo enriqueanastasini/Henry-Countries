@@ -7,12 +7,12 @@ import { setFilteredCountries, setPagina, setPaginado } from "../../redux/action
 import style from "./CardsContainer.module.css"
 import { ordenAlfabeticoPaises, ordenHabitantesPaises } from "../../redux/actions";
 import { ORDEN_ALFABETICO_PAISES, ORDEN_HABITANTES_PAISES } from "../../redux/action-types";
-//Modularizar Filtros
-//Mejorar Paginado
+import { filters } from "./Filters";
+
 
 export default function CardsContainer() {
-    // Estados de Redux
-    const countries = useSelector((state => state.countries)) 
+    // // Estados de Redux
+    // const countries = useSelector((state => state.countries)) --> creo que el estado countries no lo uso nunca
     const actividades = useSelector((state => state.activities)) 
     let countriesReserve = useSelector((state => state.countriesReserve)) 
     const paginado = useSelector((state => state.paginado)) 
@@ -30,46 +30,7 @@ export default function CardsContainer() {
         name
     } = activeFilters
     useEffect(()=>{
-        if(continents.length || activities.length || order.by || name){
-            if(continents.length) {
-                countriesReserve = countriesReserve.filter(country => continents.includes(country.continent))
-            }  
-            if(activities.length) {
-                const countriesID = []
-                for(let actividad of actividades) {
-                    if(activities.includes(actividad.activity_id)){
-                        actividad.countries.forEach(country => countriesID.push(country.id))
-                    }
-                }
-                    countriesReserve = countriesReserve.filter(country => countriesID.includes(country.id))
-            }
-            if(order.by){
-                switch(order.by) {
-                    case "alfabetico":
-                        order.sentido ? 
-                            countriesReserve = countriesReserve.sort((c1, c2) => c1.name.localeCompare(c2.name))
-                         : 
-                            countriesReserve = countriesReserve.sort((c1, c2) => c2.name.localeCompare(c1.name))
-                    break
-                    case "population":
-                        order.sentido ?
-                            countriesReserve = countriesReserve.sort((c1, c2) => c2.population - c1.population)
-                        :
-                            countriesReserve = countriesReserve.sort((c1, c2) => c1.population - c2.population)
-                    break
-                    default:
-                    break
-                }
-            }
-            if(name){
-                countriesReserve = countriesReserve.filter(country => country.name.toUpperCase().includes(name.toUpperCase()))
-            }
-            dispatch(setFilteredCountries(countriesReserve))
-            dispatch(setPaginado(countriesReserve))
-        } else if(!name.length) {
-            dispatch(setFilteredCountries(countriesReserve))
-            dispatch(setPaginado(countriesReserve))
-        }
+        filters(continents, activities, order, name, actividades, countriesReserve, dispatch, setFilteredCountries, setPaginado)
     }, [activeFilters,chargeCountries])
     
     //Paginado
