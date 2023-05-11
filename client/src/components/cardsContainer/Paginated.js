@@ -7,10 +7,11 @@ export function usePaginated(setActualPage, paginado, pagina, setActualPageList,
 useEffect(()=> {
     if(pagina>paginas.length){
         dispatch(setPagina(0))
-    } else if (!pagina) {
-        setNoPaginado(true)
     }
-    else {
+        else {
+            if (!pagina) {
+        setNoPaginado(true)
+        }
     setActualPage(paginado[pagina])
     setActualPageList(()=>{
         if(pagina+10 < paginas.length){
