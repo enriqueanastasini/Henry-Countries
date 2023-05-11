@@ -37,8 +37,10 @@ export default function Details() {
         <div className={style.contenedorGeneral}>
             <div className={style.contenedorDetailActivities}>
                 <div className={style.contenedorDetail}>
+                   { Object.keys(country).length ? (
+                    <>
                     <div className={style.contenedorHeader}>
-                        <h2>{`${country.name}, ${country.id}`}</h2>
+                       <h2>{`${country.name}, ${country.id}`}</h2>
                         <img src={country.flag ? country.flag[0] : ""} alt="" />
                     </div>
                     <div className={style.contenedorCountryData}>
@@ -56,6 +58,8 @@ export default function Details() {
                     <div className={style.contenedorCountryData}>
                         <label className={style.label}>Población: </label><h3>{country.population} personas</h3>
                     </div>
+                    </>
+                    ) : <div><img src="https://images.squarespace-cdn.com/content/v1/5c4a3053b98a78bea1e90622/1575486969836-DQKSYYW7F60712AGPFKV/loader.gif" alt="Loading" />Loading</div> }
                 </div>
                 <div className={style.contenedorActivities}>
                      <div className={style.contenedorTitles}>   
@@ -64,14 +68,14 @@ export default function Details() {
                         <label className={style.titleDificultad}>Dif.</label>
                         <label className={style.titleDuración}>Dur.</label>
                      </div>   
-                    {country.activities?.map(activity=> (
+                    {country.activities.map(activity=> (
                         <div className={style.contenedorActivity}>
                         <label className={style.labelNameAct}>{activity.name}</label>
                         <label className={(style.labelSeasonAct)}>{traduccionTemporadas(activity.season)}</label>
                         <label className={style.numbers}>{activity.difficulty}</label>
                         <label className={style.numbers}>{activity?.duration}</label>
-                    </div>
-                    ))}
+                    </div> 
+                    )) }
                     
                 </div>
                     <Link className={style.crossHome} to="/home">X</Link>
