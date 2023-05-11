@@ -4,9 +4,6 @@ import { useDispatch } from "react-redux"
 import style from "./Form.module.css"
 import { handleChange, handleCountryChange, handleDelCountry, handleInputChange, handleSubmit } from "./formHandlers"
 
-//Modularizar el FORM
-//Probar las Validaciones
-//Estilar
 
 export default function Form() {
   // Estados locales
@@ -31,7 +28,7 @@ export default function Form() {
     return(
       <div className={style.contendorGeneral}>
       <div className={style.contenedorGeneralForm}>       
-        <form className={style.form} onSubmit={(e) => handleSubmit(e, inputs, errors, dispatch, setErrors)} >
+        <form className={style.form} onSubmit={(e) => handleSubmit(e, inputs, errors, dispatch, setErrors, setInputs)} >
           <h2 className={style.formTitle}>Crea tu propia actividad</h2>
           <div className={style.contendorCuestionario}>
             <div>

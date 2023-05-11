@@ -4,7 +4,7 @@ import validations from "./formValidations"
 
 
 // Handle Submit --> Maneja la publicación de una nueva actividad en la db y la actualización del listado de actividades en el front
-export const handleSubmit = async (e, inputs, errors, dispatch, setErrors) =>{  
+export const handleSubmit = async (e, inputs, errors, dispatch, setErrors, setInputs) =>{  
     e.preventDefault()
     if(!Object.keys(inputs).length){
       setErrors(()=>{
@@ -22,6 +22,7 @@ export const handleSubmit = async (e, inputs, errors, dispatch, setErrors) =>{
           .then(response => {
             alert(`La actividad ${inputs.name} fue creada con exito`)
             dispatch(consultaActivties());
+            setInputs({})
           })
        } 
     catch{
