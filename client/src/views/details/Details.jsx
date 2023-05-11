@@ -37,8 +37,6 @@ export default function Details() {
         <div className={style.contenedorGeneral}>
             <div className={style.contenedorDetailActivities}>
                 <div className={style.contenedorDetail}>
-                   { Object.keys(country).length ? (
-                    <>
                     <div className={style.contenedorHeader}>
                        <h2>{`${country.name}, ${country.id}`}</h2>
                         <img src={country.flag ? country.flag[0] : ""} alt="" />
@@ -58,8 +56,6 @@ export default function Details() {
                     <div className={style.contenedorCountryData}>
                         <label className={style.label}>Población: </label><h3>{country.population} personas</h3>
                     </div>
-                    </>
-                    ) : <div><img src="https://images.squarespace-cdn.com/content/v1/5c4a3053b98a78bea1e90622/1575486969836-DQKSYYW7F60712AGPFKV/loader.gif" alt="Loading" />Loading</div> }
                 </div>
                 <div className={style.contenedorActivities}>
                      <div className={style.contenedorTitles}>   
