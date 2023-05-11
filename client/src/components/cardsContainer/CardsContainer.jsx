@@ -54,7 +54,7 @@ export default function CardsContainer() {
             </div>    
             <div className={style.paginationContainer}>
                 <input type="submit" onClick={prevPage} value="Página Anterior"/>
-                {actualPageList.length ? actualPageList.map(p => <p 
+                {actualPageList ? actualPageList.map(p => <p 
                 id={p} 
                 className={p===pagina ? style.paginaActual: style.pagina} 
                 onClick={ (e) => dispatch(setPagina(parseInt(e.target.id)))}
