@@ -18,7 +18,7 @@ export default function Form() {
     
     // Consulta el nombre del pais que está siendo tipeado en el input a la db
     const consultaPaises = async () => {  
-      await axios.get(`http://localhost:3001/countries?name=${countryName}`)
+      await axios.get(`/countries?name=${countryName}`)
       .then(res=> setCountryList(()=>{
        return [...res.data]}))
     } 

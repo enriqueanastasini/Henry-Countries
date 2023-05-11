@@ -35,7 +35,7 @@ export default function SerchBar() {
    
     const consultaPaises = async (countryName) => {
        try {
-            const res = await  axios.get(`http://localhost:3001/countries?name=${countryName}`)
+            const res = await  axios.get(`/countries?name=${countryName}`)
             setCountryList(()=>{
                 setError("")
             return [...res.data]})

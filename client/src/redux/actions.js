@@ -6,7 +6,7 @@ import axios from "axios";
 
 export const consultaPaises = () => { //vamos a evitar duplicados
   return async function(dispatch) { //Se lo tengo que pasar al middelware thunk
-    try {await axios("http://localhost:3001/countries/")
+    try {await axios("/countries/")
           .then(res => dispatch({type: CONSULTA_PAISES, payload: res.data}))
   } catch(error){
     throw alert("Surgió un problema al cargar los países, por favor recargue la página")
@@ -16,7 +16,7 @@ export const consultaPaises = () => { //vamos a evitar duplicados
 export const consultaPaisId =  (id) => {
   return async function(dispatch) { 
     try {
-      await axios(`http://localhost:3001/countries/${id}`)
+      await axios(`/countries/${id}`)
           .then(res => dispatch({type: CONSULTA_PAIS_ID, payload: res.data}))
     } 
     catch (error){
@@ -27,7 +27,7 @@ export const consultaPaisId =  (id) => {
 export const consultaContinents = () => {
   return async function(dispatch) { 
     try{
-      await axios(`http://localhost:3001/continents`)
+      await axios(`/continents`)
           .then(res => dispatch({type: CONSULTA_CONTINENTS, payload: res.data}))
     }
     catch (error){
@@ -66,7 +66,7 @@ export const filterByActivities = (activitie) => {
 export const consultaActivties = () => { //hacerlo despues del send de form
   return function(dispatch) {
     try {
-      axios(`http://localhost:3001/activities`)
+      axios(`/activities`)
            .then(res => dispatch({type: CONSULTA_ACTIVITIES, payload: res.data.sort((c1, c2) => c1.name.localeCompare(c2.name))}))
     } catch(error) {
       throw alert("Surgió un problema al cargar las actividades, por favor recargue la página")

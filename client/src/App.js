@@ -2,6 +2,8 @@ import './App.css';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { LandingPage, Form, Home, Details} from "./views/index"
 import NavBar from "./components/navBar/NavBar"
+import axios from "axios"
+axios.defaults.baseURL= "https://api-countries-xj9n.onrender.com/"
 
 function App() {
   const location = useLocation()
