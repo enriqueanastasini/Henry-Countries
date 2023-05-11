@@ -29,6 +29,7 @@ export default function SerchBar() {
     const handleSubmit = (event) => {
         if (event.key === "Enter") {
             dispatch(consultaPaisName(countryName))
+            setCountryList([])
         }
     }
    
