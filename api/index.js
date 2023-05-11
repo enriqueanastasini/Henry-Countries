@@ -20,10 +20,10 @@
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 const { getAllCountriesDataControler, saveCountriesDataControler, countCountriesControlers } = require("./src/routes/controlers/countries.js")
-
+const {PORT} = process.env
 // Syncing all the models at once.
 conn.sync({ alter: true }).then(() => {
-  server.listen(3001, async () => {
+  server.listen(PORT, async () => { //saque el 3001 y puse PORT
     try{
       const dbfull = await countCountriesControlers() 
       if(!dbfull){
@@ -32,7 +32,7 @@ conn.sync({ alter: true }).then(() => {
         console.log(`Los siguientes paises no van a poder ser agregados a la db: ${countries.invalidCountries}`)
         console.log(result.message)
       }
-      console.log('%s listening at 3001'); // eslint-disable-line no-console
+      console.log('%s listening at ', PORT); // eslint-disable-line no-console //saque el 3001 y puse PORT
     }
     catch(error){
       console.log(error.message)
