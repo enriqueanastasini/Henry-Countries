@@ -10,6 +10,7 @@ import style from "./Details.module.css"
 
 export default function Details() {
     const { id } = useParams()
+    const [loading, setLoading] = useParams(true)
     const country= useSelector(state=> state.country)
     const dispatch = useDispatch()
 
@@ -29,15 +30,18 @@ export default function Details() {
     }
     
     useEffect(()=>{
+        if(loading){
         dispatch(consultaPaisId(id))
         return ()=>dispatch(limpiarPais()) 
-    },[])
+        }
+        Object.keys(country).lenth && setLoading(false)
+    },[country])
     
     return(
         <div className={style.contenedorGeneral}>
             <div className={style.contenedorDetailActivities}>
                 <div className={style.contenedorDetail}>
-                    <div className={style.contenedorHeader}>
+                    {loading ? <div><img src="https://images.squarespace-cdn.com/content/v1/5c4a3053b98a78bea1e90622/1575486969836-DQKSYYW7F60712AGPFKV/loader.gif" alt="Loading" />Loading</div> : <><div className={style.contenedorHeader}>
                        <h2>{`${country.name}, ${country.id}`}</h2>
                         <img src={country.flag ? country.flag[0] : ""} alt="" />
                     </div>
@@ -55,7 +59,7 @@ export default function Details() {
                     </div>
                     <div className={style.contenedorCountryData}>
                         <label className={style.label}>Población: </label><h3>{country.population} personas</h3>
-                    </div>
+                    </div></>}
                 </div>
                 <div className={style.contenedorActivities}>
                      <div className={style.contenedorTitles}>   
