@@ -15,7 +15,7 @@ export const handleSubmit = async (e, inputs, errors, dispatch, setErrors) =>{
     } else {
     if(!Object.keys(errors).length){
     try{
-        await axios.post('http://localhost:3001/activities', inputs, { 
+        await axios.post('/activities', inputs, { 
             headers: {
               'Content-Type': 'application/json'
             }}) 
