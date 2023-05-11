@@ -45,7 +45,7 @@ export default function Details() {
                         <label className={style.label}>Capital: </label><h3>{country.capital_city}</h3>
                     </div>
                     <div className={style.contenedorCountryData}>
-                        <label className={style.label}>Contiente: </label><h3>{country.continent}</h3>
+                        <label className={style.label}>Continente: </label><h3>{country.continent}</h3>
                     </div>
                     <div className={style.contenedorCountryData}>
                         <label className={style.label}>Región: </label><h3>{country.subregion}</h3>

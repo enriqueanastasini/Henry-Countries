@@ -54,12 +54,12 @@ export default function CardsContainer() {
             </div>    
             <div className={style.paginationContainer}>
                 <input type="submit" onClick={prevPage} value="Página Anterior"/>
-                {actualPageList?.map(p => <p 
+                {actualPageList.length ? actualPageList.map(p => <p 
                 id={p} 
                 className={p===pagina ? style.paginaActual: style.pagina} 
                 onClick={ (e) => dispatch(setPagina(parseInt(e.target.id)))}
                 >{p}
-                </p>)}
+                </p>) : <div><img src="https://images.squarespace-cdn.com/content/v1/5c4a3053b98a78bea1e90622/1575486969836-DQKSYYW7F60712AGPFKV/loader.gif" alt="Loading" />Loading</div> }
                 <input type="submit" onClick={nextPage} value="Próxima Página"/>
             </div>
         </>
