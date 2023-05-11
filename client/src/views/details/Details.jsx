@@ -35,7 +35,7 @@ export default function Details() {
         return ()=>dispatch(limpiarPais()) 
         }
         Object.keys(country).lenth && setLoading(false)
-    },[country])
+    },[country,loading])
     
     return(
         <div className={style.contenedorGeneral}>
