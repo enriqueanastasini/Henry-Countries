@@ -1,4 +1,4 @@
-import { CONSULTA_PAISES, LIMPIAR_PAIS, CONSULTA_PAIS_NAME, CONSULTA_PAIS_ID, ORDEN_ALFABETICO_PAISES, FILTER_BY_ACTIVITIE, ORDEN_HABITANTES_PAISES, FILTER_BY_CONTINENT, CONSULTA_ACTIVITIES, SET_FILTERED_COUNTRIES, CONSULTA_CONTINENTS, CONSULTA_PAGINADO, SET_PAGINA } from "./action-types";
+import { CONSULTA_PAISES, LIMPIAR_PAIS, CONSULTA_PAIS_NAME, CONSULTA_PAIS_ID, ORDEN_ALFABETICO_PAISES, FILTER_BY_ACTIVITIE, ORDEN_HABITANTES_PAISES, FILTER_BY_CONTINENT, CONSULTA_ACTIVITIES,  CONSULTA_CONTINENTS, CONSULTA_PAGINADO, SET_PAGINA } from "./action-types";
 import axios from "axios";
 
 
@@ -6,30 +6,40 @@ import axios from "axios";
 
 export const consultaPaises = () => { //vamos a evitar duplicados
   return async function(dispatch) { //Se lo tengo que pasar al middelware thunk
-    await axios("http://localhost:3001/countries/")
+    try {await axios("http://localhost:3001/countries/")
           .then(res => dispatch({type: CONSULTA_PAISES, payload: res.data}))
+  } catch(error){
+    throw alert("Surgió un problema al cargar los países, por favor recargue la página")
+  }
   }
 }
 export const consultaPaisId =  (id) => {
   return async function(dispatch) { 
-    await axios(`http://localhost:3001/countries/${id}`)
+    try {
+      await axios(`http://localhost:3001/countries/${id}`)
           .then(res => dispatch({type: CONSULTA_PAIS_ID, payload: res.data}))
+    } 
+    catch (error){
+      throw alert("Surgió un problema al buscar el país, por favor recargue la página")
+    }
   }
 }
 export const consultaContinents = () => {
-  return function(dispatch) { 
-    axios(`http://localhost:3001/continents`)
+  return async function(dispatch) { 
+    try{
+      await axios(`http://localhost:3001/continents`)
           .then(res => dispatch({type: CONSULTA_CONTINENTS, payload: res.data}))
+    }
+    catch (error){
+      throw alert("Surgió un problema al buscar los continenetes, por favor recargue la página")
+    }
   }
 }
-export const setFilteredCountries = (countries) => {
-  return {type: SET_FILTERED_COUNTRIES, payload: countries}
-}
+
 export const setPaginado = (countries) => {
   return {type: CONSULTA_PAGINADO, payload: countries}
 }
 export const setPagina = (pagina) => {
-  console.log(pagina)
   return {type: SET_PAGINA, payload: pagina}
 }
 
@@ -55,7 +65,11 @@ export const filterByActivities = (activitie) => {
 }
 export const consultaActivties = () => { //hacerlo despues del send de form
   return function(dispatch) {
-    axios(`http://localhost:3001/activities`)
+    try {
+      axios(`http://localhost:3001/activities`)
            .then(res => dispatch({type: CONSULTA_ACTIVITIES, payload: res.data.sort((c1, c2) => c1.name.localeCompare(c2.name))}))
+    } catch(error) {
+      throw alert("Surgió un problema al cargar las actividades, por favor recargue la página")
+    }
    }
 }

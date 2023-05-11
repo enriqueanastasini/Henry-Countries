@@ -3,7 +3,6 @@ const { getCountryByPkControler, getAllCountriesControler, getCountryByNameContr
 const getCountriesHandler = async (req,res)=>{
     try {
      const { name } = req.query
-     console.log(name)
      if(name){ //Si pasan un nombre por query se busca el país por su nombre
         const countries = await getCountryByNameControler(name)
         res.status(200).json(countries)

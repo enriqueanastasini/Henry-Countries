@@ -5,21 +5,21 @@ import axios from "axios";
 import styles from "./SearchBar.module.css"
 
 
+
 /*Estableces el valor que se está escribiendo en el input*/
 export default function SerchBar() {
 
-    // const dispatch = useDispatch();
-
-
-    const [countryName, setCountryName] = useState("") /*Creo un estado id para que vaya tomando el valor que vamos escribiendo en el input y luego pueda usar para buscar al personaje*/
-    const [countryList, setCountryList] = useState([]) /*Creo un estado id para que vaya tomando el valor que vamos escribiendo en el input y luego pueda usar para buscar al personaje*/
+    const [countryName, setCountryName] = useState("") /*Creo un estado para que vaya tomando el valor que vamos escribiendo en el input y luego pueda usar para buscar al personaje*/
+    const [countryList, setCountryList] = useState([]) /*Creo un estado para que vaya mostrando la lista de paises buscados en la db que van coincidiendo con el escrito*/
+    const [error, setError] = useState("")
   
     const dispatch = useDispatch()
     const handleInputChange = (event) => {
-        setCountryName(event.target.value)
+        setCountryName(()=>{
+            return event.target.value})
     }
     const countryNameSaved = useSelector(state => state.activeFilters.name)
-    const inputValue = ()=>{
+    const inputValue = ()=>{ // si mi estado global tiene algo y el local no entonces devolve el global sino devolve el local
         if(countryNameSaved && !countryName){
             return countryNameSaved
         } else {
@@ -31,21 +31,26 @@ export default function SerchBar() {
             dispatch(consultaPaisName(countryName))
         }
     }
-    const handleClic = (event) => {
-        dispatch(consultaPaisName(event.target.value))
+   
+    const consultaPaises = async (countryName) => {
+       try {
+            const res = await  axios.get(`http://localhost:3001/countries?name=${countryName}`)
+            setCountryList(()=>{
+                setError("")
+            return [...res.data]})
+       } catch (error) {
+            setError("Intente de otra forma")
+       }
     }
-    const consultaPaises = async () => {
-       await axios.get(`http://localhost:3001/countries?name=${countryName}`)
-       .then(res=> setCountryList(()=>{
-        return [...res.data]}))
-    }
-
+    
     useEffect(
-        ()=> {if(countryName !== "") {
-            consultaPaises()
+        ()=> {
+            if(countryName !== "") {
+            consultaPaises(countryName)
         } else if(countryName === "" && countryList.length){ 
             setCountryList([])
-            dispatch(consultaPaisName(countryName)) ///esto no tiene en cuenta los otros filtros --> como hacer para tenerlos en cuenta?
+            setError("")
+            dispatch(consultaPaisName(countryName)) 
         }
     }
         , [countryName]
@@ -55,29 +60,27 @@ export default function SerchBar() {
     /*Esta función hace la consulta al servidor con axios */ 
     /*Agregas un componente character al estado characters cuando toco click en Crear devolviendo al componente padre el listado de los personajes a agregar*/
     return (
-    <div class={styles.wrap}>
+    <div className={styles.wrap}>
         {/* Creamos el serchbar */}
-        <div class={styles.search}>
+        <div className={styles.search}>
             
         <input 
             type="text"
-            class={styles.searchTerm}
+            className={styles.searchTerm}
             placeholder="Escriba su proximo destino..."
             list="options"
             value={inputValue()} 
             onChange={handleInputChange}
             onKeyPress={handleSubmit} 
             />
-        <button type="submit" class={styles.searchButton}>
-                        <i class="fa fa-search"></i>
+        <button type="submit" className={styles.searchButton}>
+                        <i className="fa fa-search"></i>
                     </button>
         <datalist style={{width: "100px"}} id="options" >
-            {countryList.map(country => <option onClick={handleClic} value={country.name}>{country.name}</option> )}
+            {countryList.map(country => <option value={country.name}>{country.name}</option>)}
         </datalist>
          {/*Cuando usamos el onClick y debemos pasar un parametro para que la función no se ejecute cada vez que re renderiza la página*/}
          </div>
+         <div className={styles.errorContainer}>{error && <p className={styles.errorText}>{error}</p>}</div>
     </div>
     )}
-
-    //onChange={handleInputChange} value={id}
-    //<button onClick={() =>  >Crear</button>

@@ -11,7 +11,6 @@ function validateName(name){
   } else if(name.length > 40){
     return "El nombre de la actividad es demasiado largo"
   }
-  console.log(regex.test(name))
   if(!regex.test(name)){
     return "El nombre de la actividad no puede contener carateres especiales"
   }
@@ -34,7 +33,6 @@ function validateDifficulty(difficulty){
   if(!difficulty) {
     return "Debe ingresar una dificultad"
   }
-  console.log(typeof difficulty)
   if(typeof difficulty !== "number" || difficulty > 5 || difficulty < 1){
     return "La dificultad debe ser un número válido entre 1-5"
   }
@@ -68,7 +66,6 @@ export default function validations(inputs){
       if(Object.values(errors).every(e=> e=== undefined)) {
         return {}
       }
-    console.log(errors)
     return errors
   }
     return {

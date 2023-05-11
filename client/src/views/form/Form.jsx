@@ -24,8 +24,7 @@ export default function Form() {
     } 
 
     useEffect(()=> {if(countryName !== "") {
-          consultaPaises()}
-    console.log(inputs)}
+          consultaPaises()}}
     , [countryName, inputs])
 
 
@@ -52,6 +51,7 @@ export default function Form() {
                     {/*Agregar una opcion defalt */}
 
 
+                    <option>Seleccione una temporada</option>
                     <option value="summer">Verano</option>
                     <option value="autumn">Otoño</option>
                     <option value="winter">Inviero</option>

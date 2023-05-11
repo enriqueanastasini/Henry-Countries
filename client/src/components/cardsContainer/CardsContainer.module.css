@@ -44,3 +44,29 @@
     height: 12px;
     background-image: url(https://cdn-icons-png.flaticon.com/512/626/626013.png);
 }
+
+.paginationContainer{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.paginaActual{
+    font-weight: 900;
+    text-decoration: underline;
+    color: #143c6c;
+    cursor: pointer
+}
+
+.paginaActual:hover{
+    transform: scale(1.1);
+}
+
+.pagina{
+    color: #999;
+    cursor: pointer
+}
+.pagina:hover{
+    transform: scale(1.1);
+    color: #143c6c;
+}

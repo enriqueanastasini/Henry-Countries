@@ -37,7 +37,6 @@ export const handleSubmit = async (e, inputs, errors, dispatch, setErrors) =>{
  //Handle Country Change --> maneja la modificación de estado de los paises que se van agregando o quitando una actividad
 //  Maneja el listado de paises a los que se puede agregar una actividad
  export const handleCountryChange = async (event, inputs, setInputs, setErrors)=>{
-    console.log(event.target.value)
     if(inputs.countriesId){
     let unRepitedCountrie = true
     for(let countriesId of inputs.countriesId){

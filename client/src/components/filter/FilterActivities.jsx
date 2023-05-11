@@ -6,7 +6,6 @@ export const FilterActivities = () => {
     const activitiesFilter = useSelector(state => state.activeFilters.activities)
     const dispatch = useDispatch()
     const handleInputChange = (event) => {
-        console.log(event.target.value)
         dispatch(filterByActivities(event.target.value))
     }
 
@@ -17,7 +16,7 @@ export const FilterActivities = () => {
             {
             activities.map(activity =>  {
               return(
-              <li>
+              <li id={Math.random()}>
                 <input type="checkbox" id={activity.activity_id} defaultChecked={activitiesFilter.includes(activity.activity_id)} value={activity.activity_id}/>
                 <label className={style.listaLabel} htmlFor={activity.activity_id}>{activity.name}</label>
               </li>)

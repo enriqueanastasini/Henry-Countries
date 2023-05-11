@@ -6,7 +6,7 @@ export default function CardsElement({country}) {
     return(
         
         <Link className={style.link} to={`/details/${id}`}>
-            <div className={style.cardContainer}> 
+            <div className={style.cardContainer} id={id}> 
                 <div className={style.contenedorNombre}>
                     <h2 className={style.textoNombre}>{name}</h2>
                 </div>
