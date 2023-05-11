@@ -2,12 +2,15 @@ import { useEffect } from "react"
 import { setPagina } from "../../redux/actions"
 
 
-export function usePaginated(setActualPage, paginado, pagina, setActualPageList, paginas, dispatch){
+export function usePaginated(setActualPage, paginado, pagina, setActualPageList, paginas, dispatch, setNoPaginado){
 
 useEffect(()=> {
     if(pagina>paginas.length){
         dispatch(setPagina(0))
-    } else {
+    } else if (!pagina) {
+        setNoPaginado(true)
+    }
+    else {
     setActualPage(paginado[pagina])
     setActualPageList(()=>{
         if(pagina+10 < paginas.length){

@@ -12,6 +12,7 @@ export default function CardsContainer() {
     let countriesReserve = useSelector((state => state.countriesReserve)) 
     const [actualPage, setActualPage] = useState([])
     const [actualPageList, setActualPageList] = useState([])
+    const [ noPaginado, setNoPaginado]=useState(false)
     
     //Filtrado
     const dispatch = useDispatch()
@@ -29,7 +30,7 @@ export default function CardsContainer() {
     
     
     //Si todavía no cargo la info poner cargando..
-    usePaginated(setActualPage, paginado, pagina, setActualPageList, paginas, dispatch)
+    usePaginated(setActualPage, paginado, pagina, setActualPageList, paginas, dispatch, setNoPaginado)
     
     // Handlers de botones se podrian poner en los botones exvepto el select
     const nextPage = () => {
@@ -52,6 +53,7 @@ export default function CardsContainer() {
             <div className={style.contenedor2Cards}>
                 {actualPage?.map(country => <CardsElement id={country.id} country={{...country}}/>)}
             </div>    
+            { noPaginado ? <></> :
             <div className={style.paginationContainer}>
                 <input type="submit" onClick={prevPage} value="Página Anterior"/>
                 {actualPageList ? actualPageList.map(p => <p 
@@ -61,7 +63,7 @@ export default function CardsContainer() {
                 >{p}
                 </p>) : <div><img src="https://images.squarespace-cdn.com/content/v1/5c4a3053b98a78bea1e90622/1575486969836-DQKSYYW7F60712AGPFKV/loader.gif" alt="Loading" />Loading</div> }
                 <input type="submit" onClick={nextPage} value="Próxima Página"/>
-            </div>
+            </div>}
         </>
     )
 }
