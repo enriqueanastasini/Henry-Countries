@@ -29,7 +29,7 @@ export default function CardsContainer() {
     
     
     //Si todavía no cargo la info poner cargando..
-    usePaginated(setActualPage, paginado, pagina, setActualPageList, paginas)
+    usePaginated(setActualPage, paginado, pagina, setActualPageList, paginas, dispatch)
     
     // Handlers de botones se podrian poner en los botones exvepto el select
     const nextPage = () => {

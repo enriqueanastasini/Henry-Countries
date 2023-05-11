@@ -2,11 +2,11 @@ import { useEffect } from "react"
 import { setPagina } from "../../redux/actions"
 
 
-export function usePaginated(setActualPage, paginado, pagina, setActualPageList, paginas){
+export function usePaginated(setActualPage, paginado, pagina, setActualPageList, paginas, dispatch){
 
 useEffect(()=> {
     if(pagina>paginas.length){
-        setPagina(0)
+        dispatch(setPagina(0))
     } else {
     setActualPage(paginado[pagina])
     setActualPageList(()=>{
