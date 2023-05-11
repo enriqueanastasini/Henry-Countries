@@ -64,7 +64,7 @@ export default function Details() {
                         <label className={style.titleDificultad}>Dif.</label>
                         <label className={style.titleDuración}>Dur.</label>
                      </div>   
-                    {country.activities.map(activity=> (
+                    {country.activities?.map(activity=> (
                         <div className={style.contenedorActivity}>
                         <label className={style.labelNameAct}>{activity.name}</label>
                         <label className={(style.labelSeasonAct)}>{traduccionTemporadas(activity.season)}</label>
