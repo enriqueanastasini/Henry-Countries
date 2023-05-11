@@ -19,7 +19,7 @@ function validateSeason(season){
   if(typeof season !== "string"){
     return "Seleccione una opción válida"
   }
-  if(season !== "summer" && season && 'spring' && season !== 'winter' && season !== 'autumn'){
+  if(season !== "summer" && season !== 'spring' && season !== 'winter' && season !== 'autumn'){
     return "Seleccione una opción válida"
   }
 }
