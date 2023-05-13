@@ -9,18 +9,18 @@ useEffect(()=> {
         dispatch(setPagina(0))
     }
         else {
-        if (paginas.length <= 1) {
-        setNoPaginado(true)
-        }
     setActualPage(paginado[pagina])
     setActualPageList(()=>{
         if(pagina+10 < paginas.length){
         return paginas.slice(pagina, pagina + 10)
         } else if(paginas.length<10){
             return paginas.slice(0, paginas.length)
+        } else if(paginas.length<2){
+            setNoPaginado(true)
+            return []
         }
             return paginas.slice(paginas.length-10, paginas.length)
         })
         }
     }
-,[paginado , pagina, paginas])}
+,[paginado, pagina, paginas])}
