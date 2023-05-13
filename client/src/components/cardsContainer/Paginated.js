@@ -9,7 +9,7 @@ useEffect(()=> {
         dispatch(setPagina(0))
     }
         else {
-            if (!pagina) {
+        if (paginas.length <= 1) {
         setNoPaginado(true)
         }
     setActualPage(paginado[pagina])
