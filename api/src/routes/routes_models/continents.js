@@ -3,6 +3,6 @@ const { getContinents } = require("../handlers/continents");
 
 const router = Router()
 
-router.get("/", getContinents)
+router.get("/cont", getContinents)
 
 module.exports = router;
